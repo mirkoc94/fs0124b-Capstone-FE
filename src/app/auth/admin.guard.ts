@@ -29,7 +29,7 @@ export class AdminGuard {
           if (isLoggedIn && accessData.user.role === 'ADMIN') {
             return true;
           } else {
-            this.router.navigate(['homepage']);
+            this.router.navigate(['/']);
             return false;
           }
         })

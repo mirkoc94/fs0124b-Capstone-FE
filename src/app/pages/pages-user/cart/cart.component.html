@@ -1,0 +1,47 @@
+<div class="container my-4">
+  <div class="row">
+    <div *ngFor="let p of products">
+      <div class="col-12">
+        <div class="row my-2">
+          <div class="col-2">
+            <img src="assets/{{ p.image }}" alt="" />
+          </div>
+          <div class="col-6">
+            <div>{{ p.brand }}</div>
+            <div>{{ p.name }}</div>
+            <div>Prezzo: {{ p.partialTotal | currency: 'EUR'}}</div>
+          </div>
+          <div class="col-1">
+            <input type="number" [(ngModel)]="quantity" (input)="calculate()" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="product" class="row">
+    <div class="col-4 border-top">
+      <div>
+        <div>Subtotale</div>
+        <div>{{ subTotal | currency: 'EUR'}}</div>
+      </div>
+      <div>
+        <div>Spedizione</div>
+        <div>{{ shipping | currency: 'EUR'}}</div>
+      </div>
+      <div>
+        <div>Totale</div>
+        <div>{{ total | currency: 'EUR'}}</div>
+      </div>
+      <div class="payment-btn" (click)="goToPayment()">
+        Procedi al pagamento
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3>Il tuo Carrello é vuoto</h3>
+    <p>Il tuo carrello aspetta di essere rimepito. Approfitta dei nostri prodotti delle migliori marche selezionati con cura per te</p>
+    <button class="btn btn-shop" routerLink="/shop">Vai allo Shop</button>
+  </div>
+</div>

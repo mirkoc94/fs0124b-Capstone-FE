@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+}
+
+input {
+  width: 40px;
+  padding: 2px 5px;
+}
+
+.payment-btn {
+  margin-top: 40px;
+  background-color: rgb(3, 80, 84);
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 5px 5px 5px rgb(183, 243, 246);
+  cursor: pointer;
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.btn-shop{
+  background: rgb(248,153,11);
+  color: white;
+}

@@ -1,0 +1,5 @@
+<div class="paypal-container">
+  <div class="amount">Totale: {{amount | currency : "EUR"}}</div>
+  <div #paymentRef></div>
+  <div class="back" (click)="cancel()">Annulla</div>
+</div>

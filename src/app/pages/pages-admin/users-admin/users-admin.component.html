@@ -1,0 +1,9 @@
+<div class="container">
+  <h3>Lista Utenti</h3>
+  <div *ngFor="let u of users">
+    <h2>Utente id. {{ u.id }}</h2>
+    <p>Username: {{ u.username}}</p>
+    <p>Email: {{ u.email}}</p>
+    <button routerLink="/user/{{ u.id }}">Dettagli Utente</button>
+  </div>
+</div>

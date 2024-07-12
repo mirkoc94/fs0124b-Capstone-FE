@@ -1,0 +1,27 @@
+<div class="mt-4 mb-5 row align-items-center">
+  <div class="d-flex flex-column gap-3 container mt-4 col-4">
+    <h1 class="text-white text-center pink">Modifca Prodotto</h1>
+    <form class="p-4 p-md-5 rounded-3 alert" data-np-autofill-form-type="register" data-np-checked="1" data-np-watching="1">
+      <div class="d-flex flex-column gap-2">
+        <div class="form-floating mb-5">
+          <input [(ngModel)]="product.brand" placeholder="Brand" id="floatingName"
+            class="form-control border border-primary" name="brand">
+          <label class="" for="floatingName">Brand:</label>
+        </div>
+
+        <div class="form-floating mb-5">
+          <input [(ngModel)]="product.name" placeholder="Nome" id="role"
+            class="form form-control border border-primary" name="name">
+          <label for="role">Nome:</label>
+        </div>
+
+        <div class="form-floating mb-5">
+          <input [(ngModel)]="product.price" type="number" placeholder="Prezzo"
+            class="form form-control border border-primary" id="strenght" name="price">
+          <label for="strenght">Prezzo:</label>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="editProduct()">Modifica Prodotto</button>
+    </form>
+  </div>
+</div>

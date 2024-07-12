@@ -1,0 +1,37 @@
+<header [ngClass]="{'scrolled': isScrolled}">
+  <div class="row d-flex justify-content-between align-items-center p-3 mx-0">
+    <a routerLink="/"
+      class="px-0 d-flex justify-content-center link-body-emphasis text-decoration-none"><img class="logo" src="/assets/img/logo.png" alt="">
+    </a>
+
+    <div class="px-0 d-flex justify-content-end">
+      <button class="hamburger btn mb-2 me-2" (click)="openEnd(content)">
+          <i class="bi bi-list"></i>
+      </button>
+
+      <ng-template #content let-offcanvas>
+        <div class="side-menu offcanvas-header">
+          <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+        </div>
+
+        <div class="side-menu offcanvas-body">
+          <ul class="list-style-none">
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/shop">Shop</a></li>
+            <hr *ngIf="user">
+            <li><a routerLink="/user">Profilo</a></li> <!-- *ngIf="user" -->
+            <li><a routerLink="/cart" class="cart"><i class="bi bi-cart2"></i>Carrello</a></li> <!-- *ngIf="user" -->
+            <hr *ngIf="user?.role === 'ADMIN'">
+            <li><a routerLink="/orders-admin">Ordini</a></li> <!-- *ngIf="user?.admin" -->
+            <li><a routerLink="/users-admin">Utenti</a></li> <!-- *ngIf="user?.admin" -->
+            <hr>
+            <li><a routerLink="/auth/login">Accedi/Registrati</a></li>
+            <button routerLink="/" (click)="logout()" class="btn btn-danger mt-3">Logout</button> <!-- *ngIf="user" -->
+          </ul>
+        </div>
+      </ng-template>
+
+    </div>
+
+  </div>
+</header>

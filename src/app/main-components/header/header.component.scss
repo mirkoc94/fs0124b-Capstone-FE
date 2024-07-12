@@ -1,0 +1,42 @@
+header {
+  background: rgb(218,163,162);
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 2s linear;
+}
+
+header.scrolled {
+  background: linear-gradient(to bottom, rgb(218,163,162) 50%, rgba(218, 163, 162, 0.363));
+}
+
+.logo {
+  width: 70px;
+  border-radius: 100%;
+  border: 2px solid rgb(230, 218, 196);
+}
+
+.hamburger {
+  position: absolute;
+  top: 35px;
+  right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+
+}
+
+.cart {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.side-menu {
+  background: rgb(230,218,196);
+}

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row justify-content-center my-4">
+    <div class="user-container col-6">
+      <h3>Nome</h3>
+      <p>{{user.firstname}}</p>
+      <h3>Cognome</h3>
+      <p>{{user.lastname}}</p>
+      <h3>Username</h3>
+      <p>{{user.username}}</p>
+      <h3>Indirizzo</h3>
+      <p>{{user.address}}</p>
+      <h3>CAP</h3>
+      <p>{{user.cap}}</p>
+      <h3>E-mail</h3>
+      <p>{{user.email}}</p>
+      <hr>
+      <div>
+        <h3>I Miei Ordini</h3>
+        <ol *ngFor="let o of orders">
+          <li>
+            <span>Ordine N° {{o.id}} -
+            del {{o.purchaseDate}} -
+            Totale {{ o.total | currency : 'EUR'}}
+            <button routerLink="/order/{{ o.id }}">View Details</button>
+            </span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>

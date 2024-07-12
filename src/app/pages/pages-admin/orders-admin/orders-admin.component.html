@@ -1,0 +1,9 @@
+<div class="container">
+  <h3>Lista Ordini</h3>
+  <div *ngFor="let o of orders">
+    <h2>Ordine id. {{ o.id }}</h2>
+    <p>Utente id. {{ o.idUser}}</p>
+    <p>Data di Acquisto: {{ o.purchaseDate| date }}</p>
+    <button routerLink="/order/{{ o.id }}">Dettagli Ordine</button>
+  </div>
+</div>

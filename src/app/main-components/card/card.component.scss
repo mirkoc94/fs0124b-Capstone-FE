@@ -1,0 +1,56 @@
+.card-box {
+  height: 250px;
+  border-radius: 12px;
+}
+
+//.cardBox:hover {
+//  transition: max-height 0.3s ease-in-out;
+//}
+
+
+.card-body {
+  height: 30%;
+
+  background: rgb(230,218,196);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.card-title {
+  font-size: 0.9rem;
+}
+
+.card-text {
+  font-size: 0.8rem;
+}
+
+//IMAGE
+
+.img-container {
+  height: 70%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+//BUTTON
+
+.add-to-cart {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+
+.btn-container {
+  justify-content: end;
+}
+
+.btn-admin{
+  font-size: 0.8rem;
+}

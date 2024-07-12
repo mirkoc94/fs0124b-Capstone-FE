@@ -1,0 +1,19 @@
+<div class="card-box m-0">
+  <div class="img-container">
+    <img [src]="product.image" alt="product">
+  </div>
+  <div class="card-body pt-0 pb-1 px-2">
+    <div class="content">
+      <h5 class="card-title mb-0">{{product.brand}}</h5>
+      <h5 class="card-title">{{product.name}}</h5>
+      <div class="row">
+        <p class="card-text d-flex col-6 pe-0 m-0">{{product.price | currency: 'EUR' }}</p>
+        <div *ngIf="user?.role === 'ADMIN'" class="btn-container d-flex col-6 ps-0">
+          <button *ngIf="user?.role === 'ADMIN'" [routerLink]="['/edit',product.id]" class="btn btn-admin px-1 py-0"><i class="bi bi-pencil-square"></i></button>
+          <button *ngIf="user?.role === 'ADMIN'" (click)="deleteProduct(product.id)" class="btn btn-admin px-1 py-0"><i class="bi bi-trash3"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="addToCart(product)" class="btn add-to-cart p-0"><i class="bi bi-bag-plus"></i></button> <!--in alto a destra-->
+</div>

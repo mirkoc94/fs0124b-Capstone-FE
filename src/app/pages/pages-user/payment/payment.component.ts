@@ -31,7 +31,7 @@ export class PaymentComponent implements OnInit {
               {
                 amount: {
                   value: this.amount.toString(),
-                  currency_code: 'USD'
+                  currency_code: 'EUR'
                 }
               }
             ]

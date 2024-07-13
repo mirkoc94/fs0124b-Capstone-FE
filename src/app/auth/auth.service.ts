@@ -8,7 +8,7 @@ import { IUser } from '../Models/i-user';
 import { environment } from '../../environments/environment.development';
 
 type AccessData = {
-  accessToken:string,
+  token:string,
   user:IUser
 }
 
@@ -38,20 +38,22 @@ export class AuthService {
 
     }
 
-  loginUrl:string = environment.loginUrl
+  loginUrl:string = environment.loginUrl;
+  registerUrl:string = environment.registerUrl;
 
   register(newUser:Partial<IUser>):Observable<AccessData>{
-    return this.http.post<AccessData>(this.loginUrl,newUser)
+    return this.http.post<AccessData>(this.registerUrl,newUser)
   }
 
   login(loginData:ILoginData):Observable<AccessData>{
     return this.http.post<AccessData>(this.loginUrl,loginData)
     .pipe(tap(data => {
+console.log(data);
 
       this.authSubject.next(data.user)
       localStorage.setItem('accessData', JSON.stringify(data))
 
-      this.autoLogout(data.accessToken)
+      this.autoLogout(data.token)
 
     }))
   }
@@ -70,9 +72,9 @@ export class AuthService {
     if(!userJson) return '';
 
     const accessData:AccessData = JSON.parse(userJson)
-    if(this.jwtHelper.isTokenExpired(accessData.accessToken)) return '';
+    if(this.jwtHelper.isTokenExpired(accessData.token)) return '';
 
-    return accessData.accessToken
+    return accessData.token
   }
 
   autoLogout(jwt:string){
@@ -91,10 +93,10 @@ export class AuthService {
     if(!userJson) return;
 
     const accessData:AccessData = JSON.parse(userJson)
-    if(this.jwtHelper.isTokenExpired(accessData.accessToken)) return;
+    if(this.jwtHelper.isTokenExpired(accessData.token)) return;
 
     this.authSubject.next(accessData.user)
-    this.autoLogout(accessData.accessToken)
+    this.autoLogout(accessData.token)
 
   }
 

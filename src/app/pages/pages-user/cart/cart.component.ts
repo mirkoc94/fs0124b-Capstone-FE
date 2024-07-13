@@ -35,7 +35,7 @@ export class CartComponent implements OnInit{
 
   goToPayment() {
     this.payment.totalAmount = this.total;
-    this.router.navigate(['payment']);
+    this.router.navigate(['/payment']);
   }
 
 

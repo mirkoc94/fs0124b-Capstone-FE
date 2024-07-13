@@ -16,11 +16,11 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {
 
-    //this.getAllProducts().subscribe(
-    //  products => {
-    //    this.productSubject.next(products);
-    //  }
-    //);
+    this.getAllProducts().subscribe(
+      products => {
+        this.productSubject.next(products);
+      }
+    );
   }
 
   getProductById(id: number): Observable<IProduct> {

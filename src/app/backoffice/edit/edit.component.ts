@@ -21,8 +21,8 @@ export class EditComponent {
     ngOnInit(){
       this.route.params.subscribe((params: any) => {
         this.productsSvc.products$.subscribe(products => {
-          const foundPlayer = products.find(p => p.id == params.id)
-          if(foundPlayer) this.product = foundPlayer
+          const foundProduct = products.find(p => p.id == params.id)
+          if(foundProduct) this.product = foundProduct
         })
       })
     }

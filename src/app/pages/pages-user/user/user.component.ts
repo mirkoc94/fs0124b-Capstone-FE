@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IOrder } from '../../../Models/i-order';
 import { IUser } from '../../../Models/i-user';
 import { OrdersService } from '../../../services/orders.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-user',
@@ -10,13 +12,24 @@ import { OrdersService } from '../../../services/orders.service';
 })
 export class UserComponent implements OnInit {
 
-  @Input() user!:IUser
-
+  user!: IUser
   orders : IOrder[] = []
 
-  constructor(private ordersSvc:OrdersService){}
+  constructor(
+    private usersSvc: UsersService,
+    private ordersSvc:OrdersService,
+    private route:ActivatedRoute,
+    private router: Router
+  ){}
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.route.params.subscribe((params: any) => {
+      this.usersSvc.users$.subscribe(users => {
+        const foundUser = users.find(p => p.id == params.id)
+        if(foundUser) this.user = foundUser
+      })
+    })
+
     this.ordersSvc.getAllOrders().subscribe(orders => this.orders = orders);
   }
 

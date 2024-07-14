@@ -27,7 +27,7 @@ const routes: Routes = [
     //canActivate: [AdminGuard]
   },
   {
-    path: 'user',
+    path: 'user/:id',
     loadChildren: () => import('./pages/pages-user/user/user.module').then(m => m.UserModule),
     title: 'Beauty&Co | Profilo',
     //canActivate: [AuthGuard]

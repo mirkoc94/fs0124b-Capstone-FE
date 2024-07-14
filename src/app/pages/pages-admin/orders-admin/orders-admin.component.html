@@ -1,9 +1,11 @@
 <div class="container">
-  <h3>Lista Ordini</h3>
+  <h2>Lista Ordini</h2>
   <div *ngFor="let o of orders">
-    <h2>Ordine id. {{ o.id }}</h2>
-    <p>Utente id. {{ o.idUser}}</p>
-    <p>Data di Acquisto: {{ o.purchaseDate| date }}</p>
-    <button routerLink="/order/{{ o.id }}">Dettagli Ordine</button>
+    <div class="d-flex single-prod my-3">
+      <p class="pe-2 start">Ordine id.{{o.id}} -</p>
+      <p class="pe-2">Utente id.{{o.idUser}} /</p>
+      <p class="pe-2">Data di Acquisto: {{o.purchaseDate| date }}</p>
+      <button [routerLink]="['/order',o.id]">Dettagli Ordine</button>
+    </div>
   </div>
 </div>

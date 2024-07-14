@@ -10,11 +10,20 @@ import { OrdersService } from '../../../services/orders.service';
 export class OrdersAdminComponent {
 
   orders: IOrder[] = [];
+  order: IOrder | undefined;
 
   constructor(private ordersSvc: OrdersService) {}
 
-  ngOnInit(): void {
-    this.ordersSvc.getAllOrders().subscribe(orders => this.orders = orders);
+  ngOnInit() {
+    this.ordersSvc.getAllOrders().subscribe(order => {
+      this.orders = order
+    });
+
+    this.ordersSvc.orders$.subscribe(
+      order => {
+        this.orders = order;
+      });
+
   }
 
 }

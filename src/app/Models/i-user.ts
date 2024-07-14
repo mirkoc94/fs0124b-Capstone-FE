@@ -5,10 +5,10 @@ export interface IUser {
   firstName : string,
   lastName : string,
   username : string,
-  address : string,
-  cap : number,
+  //address : string,
+  //cap : number,
   email : string,
   password : string,
   orderList : IOrder[],
-  role?: 'USER' | 'ADMIN' //admin?:boolean
+  role?: 'USER' | 'ADMIN'
 }

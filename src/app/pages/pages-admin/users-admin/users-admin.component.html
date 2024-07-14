@@ -1,9 +1,11 @@
-<div class="container">
-  <h3>Lista Utenti</h3>
+<div class="container my-4">
+  <h2>Lista Utenti</h2>
   <div *ngFor="let u of users">
-    <h2>Utente id. {{ u.id }}</h2>
-    <p>Username: {{ u.username}}</p>
-    <p>Email: {{ u.email}}</p>
-    <button routerLink="/user/{{ u.id }}">Dettagli Utente</button>
+    <div class="d-flex single-user my-3">
+      <p class="pe-2 start">Utente id.{{u.id}} -</p>
+      <p class="pe-2">Username: {{u.username}} /</p>
+      <p class="pe-2">Email: {{u.email}}</p>
+      <button [routerLink]="['/user',u.id]">Dettagli Utente</button>
+    </div>
   </div>
 </div>

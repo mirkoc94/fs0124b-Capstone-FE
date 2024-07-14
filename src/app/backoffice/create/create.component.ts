@@ -40,13 +40,6 @@ export class CreateComponent {
     this.productsSvc.addProduct(this.newProduct).subscribe(
       newProduct => {
         this.products.push(newProduct);
-        //this.newProduct = {
-        //  id: 0,
-        //  brand: '',
-        //  name:'',
-        //  price: 0,
-        //  image: ''
-        //};
       },
       error => {
         console.error('Error adding product:', error);

@@ -19,9 +19,9 @@ export class ShopComponent {
     private authSvc:AuthService){}
 
   ngOnInit() {
-    //this.productsSvc.getAllProducts().subscribe(product => {
-    //  this.products = product;
-    //});
+    this.productsSvc.getAllProducts().subscribe(product => {
+      this.products = product;
+    });
 
     this.productsSvc.products$.subscribe(
       product => {
@@ -31,6 +31,12 @@ export class ShopComponent {
     this.authSvc.user$.subscribe(user => {
       this.user = user || undefined;
     })
+  }
+
+  loadProducts(): void {
+    this.productsSvc.getAllProducts().subscribe((data: IProduct[]) => {
+      this.products = data;
+    });
   }
 
 }

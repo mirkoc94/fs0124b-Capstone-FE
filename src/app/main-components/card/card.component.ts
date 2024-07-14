@@ -1,7 +1,9 @@
 import { IProduct } from './../../Models/i-product';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from '../../Models/i-user';
 import { ProductsService } from '../../services/products.service';
+import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -12,17 +14,29 @@ export class CardComponent {
 
   @Input() product!: IProduct
   user: IUser | undefined
-  cart: IProduct[] = [];
+  products: IProduct[] = [];
 
 
-  constructor(private productsSvc: ProductsService){}
+  constructor(private productsSvc: ProductsService, private cartSvc: CartService,private router: Router){}
 
-  deleteProduct(id:number) {
-    this.productsSvc.deleteProduct(id).subscribe();
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  deleteProduct(id: number): void {
+    this.productsSvc.deleteProduct(id).subscribe(() => {
+      this.products = this.products.filter(product => product.id !== id);
+    });
+  }
+
+  loadProducts(): void {
+    this.productsSvc.getAllProducts().subscribe((data: IProduct[]) => {
+      this.products = data;
+    });
   }
 
   addToCart(product: IProduct): void {
-    this.cart.push(product);
+    this.cartSvc.addToCart(product);
   }
 
 }

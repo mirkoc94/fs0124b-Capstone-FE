@@ -29,7 +29,7 @@ export class EditComponent {
 
     editProduct(){
       this.productsSvc.editProduct(this.product).subscribe()
-      if(this.product) this.router.navigate(['/products'])
+      if(this.product) this.router.navigate(['/shop'])
     }
 
     isCollapsed: boolean = true;

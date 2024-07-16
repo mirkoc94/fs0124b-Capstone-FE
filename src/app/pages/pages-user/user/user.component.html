@@ -19,7 +19,7 @@
       <div>
         <h3>I Miei Ordini</h3>
         <div *ngIf="orders && orders.length > 0; else emptyOrder">
-          <ol *ngFor="let o of orders">
+          <ul *ngFor="let o of orders">
             <li>
               <span>Ordine N° {{o.id}} -
               del {{o.purchaseDate}} -
@@ -27,7 +27,7 @@
               <button routerLink="/order/{{ o.id }}">View Details</button>
               </span>
             </li>
-          </ol>
+          </ul>
         </div>
 
         <ng-template #emptyOrder>

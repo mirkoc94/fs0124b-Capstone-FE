@@ -26,7 +26,7 @@ export class AdminGuard {
       const accessData:AccessData = JSON.parse(userJson!)
       return this.authSvc.isLoggedIn$.pipe(
         map(isLoggedIn => {
-          if (isLoggedIn && accessData.user.role === 'ADMIN') {
+          if (isLoggedIn && accessData.user.roles === 'ADMIN') {
             return true;
           } else {
             this.router.navigate(['/']);

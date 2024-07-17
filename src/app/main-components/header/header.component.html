@@ -18,15 +18,15 @@
           <ul class="list-style-none">
             <li><a routerLink="/">Home</a></li>
             <li><a routerLink="/shop">Shop</a></li>
-            <hr *ngIf="user">
-            <li><a routerLink="/user">Profilo</a></li> <!-- *ngIf="user" -->
-            <li><a routerLink="/cart" class="cart"><i class="bi bi-cart2"></i>Carrello</a></li> <!-- *ngIf="user" -->
-            <hr *ngIf="user?.role === 'ADMIN'">
-            <li><a routerLink="/orders-admin">Ordini</a></li> <!-- *ngIf="user?.admin" -->
-            <li><a routerLink="/users-admin">Utenti</a></li> <!-- *ngIf="user?.admin" -->
+            <hr *ngIf="user?.roles==='ADMIN'">
+            <li *ngIf="user?.roles==='ADMIN'"><a routerLink="/user/:id">Profilo</a></li>
+            <li *ngIf="user?.roles==='ADMIN'"><a routerLink="/cart" class="cart"><i class="bi bi-cart2"></i>Carrello</a></li>
+            <hr *ngIf="user?.roles==='ADMIN'">
+            <li *ngIf="user?.roles==='ADMIN'"><a routerLink="/orders-admin">Ordini</a></li>
+            <li *ngIf="user?.roles==='ADMIN'"><a routerLink="/users-admin">Utenti</a></li>
             <hr>
             <li><a routerLink="/auth/login">Accedi/Registrati</a></li>
-            <button routerLink="/" (click)="logout()" class="btn btn-danger mt-3">Logout</button> <!-- *ngIf="user" -->
+            <button *ngIf="user?.roles==='ADMIN'" routerLink="/" (click)="logout()" class="btn btn-danger mt-3">Logout</button>
           </ul>
         </div>
       </ng-template>

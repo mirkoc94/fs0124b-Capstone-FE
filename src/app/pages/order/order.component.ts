@@ -13,7 +13,7 @@ import { IUser } from '../../Models/i-user';
 })
 export class OrderComponent implements OnInit {
 
-  order: IOrder | undefined;
+  order!: IOrder;
   orders: IOrder[]=[];
   products : IProduct[] = [];
   user!: IUser;
@@ -27,24 +27,33 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(){
 
-    this.route.params.subscribe(params => {
-      this.user.id = +params['id']; // Converti il parametro da stringa a numero
-      this.loadUserOrders(this.user.id);
-    });
+    //this.route.params.subscribe(params => {
+    //  this.user.id = +params['id']; // Converti il parametro da stringa a numero
+    //  this.loadUserOrders(this.user.id);
+    //});
+
+    this.route.params.subscribe((params: any) => {
+      this.ordersSvc.orders$.subscribe(orders => {
+        const foundOrder = orders.find(o => o.id == params.id)
+        if(foundOrder) this.order = foundOrder
+      })
+    })
+
+    //this.ordersSvc.getOrdersByUserId(this.user.id).subscribe(orders => this.orders = orders);
 
     this.productsSvc.getAllProducts().subscribe(products => this.products = products);
   }
 
-  loadUserOrders(userId: number): void {
-    this.ordersSvc.getOrdersByUserId(userId)
-      .subscribe({
-        next: (orders) => {
-          this.orders = orders;
-        },
-        error: (err) => {
-          this.error = err;
-          console.error('Error loading user orders:', err);
-        }
-      });
-  }
+  //loadUserOrders(userId: number): void {
+  //  this.ordersSvc.getOrdersByUserId(userId)
+  //    .subscribe({
+  //      next: (orders) => {
+  //        this.orders = orders;
+  //      },
+  //      error: (err) => {
+  //        this.error = err;
+  //        console.error('Error loading user orders:', err);
+  //      }
+  //    });
+  //}
 }

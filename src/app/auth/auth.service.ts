@@ -48,7 +48,6 @@ export class AuthService {
   login(loginData:ILoginData):Observable<AccessData>{
     return this.http.post<AccessData>(this.loginUrl,loginData)
     .pipe(tap(data => {
-console.log(data);
 
       this.authSubject.next(data.user)
       localStorage.setItem('accessData', JSON.stringify(data))

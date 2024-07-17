@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../Models/i-product';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
 @Injectable({
@@ -57,6 +57,7 @@ export class ProductsService {
       );
   }
 
+
   editProduct(product: IProduct): Observable<IProduct> {
     return this.http.put<IProduct>(`${environment.productsUrl}/${product.id}`, product)
       .pipe(
@@ -88,5 +89,12 @@ export class ProductsService {
           throw error;
         })
       );
+  }
+
+  uploadImage(file: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<string>(`${environment.productsUrl}/upload`, formData);
   }
 }

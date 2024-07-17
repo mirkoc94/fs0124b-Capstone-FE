@@ -28,6 +28,8 @@ export class LoginComponent {
   signIn(){
     this.authSvc.login(this.loginData)
     .subscribe(data => {
+      console.log(data);
+
       this.router.navigate(['/'])
     })
   }

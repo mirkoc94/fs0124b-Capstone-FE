@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IProduct } from '../../../Models/i-product';
 import { ProductsService } from '../../../services/products.service';
 import { AuthService } from '../../../auth/auth.service';
@@ -11,7 +11,7 @@ import { IUser } from '../../../Models/i-user';
 })
 export class ShopComponent {
 
-  products : IProduct[] = []
+  products : IProduct[] = [];
   user: IUser | undefined;
 
   constructor(

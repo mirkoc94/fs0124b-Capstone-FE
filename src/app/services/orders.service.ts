@@ -3,13 +3,16 @@ import { IOrder } from '../Models/i-order';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { environment } from '../../environments/environment.development';
+import { IUser } from '../Models/i-user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
 
-  orders:IOrder[] = []
+  orders:IOrder[] = [];
+  order!:IOrder;
+  user!: IUser;
 
   private orderSubject = new BehaviorSubject<IOrder[]>([]);
   orders$ = this.orderSubject.asObservable();
@@ -39,24 +42,12 @@ export class OrdersService {
     );
   }
 
-  //getOrdersByUserId(userId: number): Observable<IOrder[]> {
-  //  return this.http.get<IOrder[]>(`${environment.ordersUrl}/users/${userId}/orders`)
-  //    .pipe(
-  //      catchError(error => {
-  //        console.error('Error fetching user orders:', error);
-  //        throw error;
-  //      })
-  //    );
-  //}
-
   getOrdersByUserId(userId: number): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(`${environment.ordersUrl}/users/${userId}/users`)
-      .pipe(
-        catchError(error => {
-          console.error('Error fetching user orders:', error);
-          throw error;
-        })
-      );
+    return this.http.get<IOrder[]>(`${environment.usersUrl}/${userId}/orders`);
+  }
+
+  getOrderByUserId(userId: number, orderId: number): Observable<IOrder> {
+    return this.http.get<IOrder>(`${environment.usersUrl}/${userId}/orders/${orderId}`);
   }
 
   getAllOrders(): Observable<IOrder[]> {

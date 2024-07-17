@@ -10,5 +10,5 @@ export interface IUser {
   email : string,
   password : string,
   orderList : IOrder[],
-  role?: 'USER' | 'ADMIN'
+  roles?: "USER" | "ADMIN"
 }

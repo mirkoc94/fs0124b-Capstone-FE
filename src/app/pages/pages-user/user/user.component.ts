@@ -1,6 +1,6 @@
+import { IUser } from './../../../Models/i-user';
 import { Component, Input, OnInit } from '@angular/core';
 import { IOrder } from '../../../Models/i-order';
-import { IUser } from '../../../Models/i-user';
 import { OrdersService } from '../../../services/orders.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../../services/users.service';
@@ -12,14 +12,14 @@ import { UsersService } from '../../../services/users.service';
 })
 export class UserComponent implements OnInit {
 
-  user!: IUser
-  orders : IOrder[] = []
+  user!: IUser;
+  userId!: number;
+  orders : IOrder[] = [];
 
   constructor(
     private usersSvc: UsersService,
     private ordersSvc:OrdersService,
-    private route:ActivatedRoute,
-    private router: Router
+    private route:ActivatedRoute
   ){}
 
   ngOnInit(){
@@ -30,7 +30,34 @@ export class UserComponent implements OnInit {
       })
     })
 
-    this.ordersSvc.getAllOrders().subscribe(orders => this.orders = orders);
+    this.route.params.subscribe(params => {
+      this.userId = +params['userId'];
+      if (!isNaN(this.userId)) {
+        this.getOrders();
+      } else {
+        console.error("Invalid user ID");
+      }
+    });
+
+    //this.ordersSvc.getOrdersByUserId(this.user).subscribe(orders => this.orders = orders);
+  }
+
+  getOrders(): void {
+    this.ordersSvc.getOrdersByUserId(this.userId).subscribe(orders => {
+      this.orders = orders;
+    },
+    error => {
+      console.error("Error fetching orders:", error);
+    });
+  }
+
+  getOrder(orderId: number): void {
+    this.ordersSvc.getOrderByUserId(this.userId, orderId).subscribe(order => {
+      console.log(order);
+    },
+    error => {
+      console.error("Error fetching order:", error);
+    });
   }
 
 }

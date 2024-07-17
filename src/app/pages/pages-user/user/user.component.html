@@ -19,20 +19,20 @@
       <div>
         <h3>I Miei Ordini</h3>
         <div *ngIf="orders && orders.length > 0; else emptyOrder">
-          <ul *ngFor="let o of orders">
-            <li>
+          <ol>
+            <li *ngFor="let o of orders">
               <span>Ordine N° {{o.id}} -
               del {{o.purchaseDate}} -
               Totale {{ o.total | currency : 'EUR'}}
               <button routerLink="/order/{{ o.id }}">View Details</button>
               </span>
             </li>
-          </ul>
+          </ol>
         </div>
 
         <ng-template #emptyOrder>
           <p>Ancora nessun ordine</p>
-          <button class="btn btn-shop" routerLink="/shop">Vai allo Shop</button>
+          <button class="btn btn-shop mb-3" routerLink="/shop">Vai allo Shop</button>
         </ng-template>
       </div>
     </div>

@@ -6,3 +6,36 @@
   background: rgb(248,153,11);
   color: white;
 }
+
+@media screen and (min-width: 1200px) {
+
+  .app-c-container {
+    width: 17%;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+
+  .app-c-container {
+    width: 21%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+
+  .app-c-container {
+    width: 27%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+
+  .ngf-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .app-c-container {
+    width: 35%;
+  }
+}
